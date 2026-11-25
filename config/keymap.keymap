@@ -9,75 +9,216 @@
 #endif
 
 / {
-    combos {
-        compatible = "zmk,combos";
-
-        bt_clear {
-            bindings = <&bt BT_CLR>;
-            key-positions = <28 29>;
-            layers = <2>;
+    behaviors {
+        lt150: lt_150 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+            flavor = "hold-preferred";
+            bindings = <&mo>, <&kp>;
+        };
+        lt250: lt_250 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;
+            flavor = "hold-preferred";
+            bindings = <&mo>, <&kp>;
         };
     };
-
+    macros {
+        cornix_macro0: cornix_macro_0 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(LS(LC(N))) &kp LC(LA(LEFT))>;
+        };
+        cornix_macro1: cornix_macro_1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(LS(LC(N))) &kp LC(LA(RIGHT))>;
+        };
+    };
+    combos {
+        compatible = "zmk,combos";
+        bt_clear_admin {
+            timeout-ms = <50>;
+            key-positions = <27 28>;
+            layers = <5>;
+            bindings = <&bt BT_CLR>;
+        };
+        combo_0 {
+            timeout-ms = <50>;
+            key-positions = <15 16>;
+            layers = <0>;
+            bindings = <&kp LS(N8)>;
+        };
+        combo_1 {
+            timeout-ms = <50>;
+            key-positions = <19 20>;
+            layers = <0>;
+            bindings = <&kp LS(N9)>;
+        };
+        combo_2 {
+            timeout-ms = <50>;
+            key-positions = <27 28>;
+            layers = <0>;
+            bindings = <&kp LS(RBKT)>;
+        };
+        combo_3 {
+            timeout-ms = <50>;
+            key-positions = <33 34>;
+            layers = <0>;
+            bindings = <&kp LS(NUHS)>;
+        };
+        combo_4 {
+            timeout-ms = <50>;
+            key-positions = <41 42>;
+            layers = <0>;
+            bindings = <&kp RBKT>;
+        };
+        combo_5 {
+            timeout-ms = <50>;
+            key-positions = <47 48>;
+            layers = <0>;
+            bindings = <&kp NUHS>;
+        };
+        combo_6 {
+            timeout-ms = <50>;
+            key-positions = <35 36>;
+            layers = <0>;
+            bindings = <&kp LS(INT1)>;
+        };
+        combo_8 {
+            timeout-ms = <50>;
+            key-positions = <40 39>;
+            layers = <0>;
+            bindings = <&kp LS(FSLH)>;
+        };
+        combo_9 {
+            timeout-ms = <50>;
+            key-positions = <14 15>;
+            layers = <0>;
+            bindings = <&kp LS(COMMA)>;
+        };
+        combo_10 {
+            timeout-ms = <50>;
+            key-positions = <20 21>;
+            layers = <0>;
+            bindings = <&kp LS(DOT)>;
+        };
+        combo_11 {
+            timeout-ms = <50>;
+            key-positions = <33 34>;
+            layers = <2>;
+            bindings = <&kp LA(TAB)>;
+        };
+        combo_12 {
+            timeout-ms = <50>;
+            key-positions = <35 34>;
+            layers = <2>;
+            bindings = <&kp LS(LA(TAB))>;
+        };
+        combo_13 {
+            timeout-ms = <50>;
+            key-positions = <20 19>;
+            layers = <2>;
+            bindings = <&kp LC(LS(TAB))>;
+        };
+        combo_14 {
+            timeout-ms = <50>;
+            key-positions = <20 21>;
+            layers = <2>;
+            bindings = <&kp LC(TAB)>;
+        };
+        combo_24 {
+            timeout-ms = <50>;
+            key-positions = <28 27 26 25>;
+            layers = <0>;
+            bindings = <&to 0>;
+        };
+    };
     keymap {
         compatible = "zmk,keymap";
-
         layer_0 {
             bindings = <
-&kp ESC    &kp N1     &kp N2    &kp N3    &kp N4    &kp N5                                                         &kp N6       &kp N7    &kp N8     &kp N9    &kp N0                &kp BSPC
-&kp TAB    &kp Q      &kp W     &kp E     &kp R     &kp T                                                          &kp Y        &kp U     &kp I      &kp O     &kp P                 &kp BSPC
-&kp CAPS   &kp A      &kp S     &kp D     &kp F     &kp G        &mkp LCLK                  &mkp RCLK              &kp H        &kp J     &kp K      &kp L     &kp SEMI              &kp SQT
-&kp LSHFT  &kp Z      &kp X     &kp C     &kp V     &kp B        &kp SPACE                  &kp RET                &kp N        &kp M     &kp COMMA  &kp DOT   &mt RIGHT_SHIFT FSLH  &kp RSHFT
-&kp LCTRL  &kp LCTRL  &kp LGUI  &kp LALT  &kp BSPC  &lt 2 SPACE  &mt LEFT_SHIFT LANGUAGE_1  &mt RSHIFT LANGUAGE_2  &lt 3 ENTER  &kp BSPC  &kp RALT   &kp RGUI  &kp RCTRL             &kp RCTRL
+                &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
+                &kp ESC  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp BSPC
+                &kp TAB  &kp A  &kp S  &kp D  &kp F  &kp G  &none  &none  &lt150 4 H  &kp J  &kp K  &kp L  &kp MINUS  &kp RET
+                &kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp C_MUTE  &to 4  &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RSHFT
+                &kp LCTRL  &kp LGUI  &kp LALT  &mo 5  &lt250 3 LANG2  &kp LGUI  &lt150 1 SPACE  &lt150 1 SPACE  &lt150 2 LANG1  &none  &none  &kp RALT  &kp RGUI  &kp LC(LG(SPACE))
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
-&msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
+                &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
-&mkp MCLK
+                &mkp MCLK
 #endif
             >;
         };
-
         layer_1 {
             bindings = <
-&trans  &trans  &trans  &trans     &trans     &trans                  &trans  &trans     &trans     &trans  &trans  &trans
-&trans  &trans  &trans  &trans     &trans     &trans                  &trans  &trans     &trans     &trans  &trans  &trans
-&trans  &trans  &trans  &mkp RCLK  &mkp LCLK  &trans  &trans  &trans  &trans  &mkp LCLK  &mkp RCLK  &trans  &trans  &trans
-&trans  &trans  &trans  &trans     &trans     &trans  &trans  &trans  &trans  &trans     &trans     &trans  &trans  &trans
+                &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
+                &trans  &kp LS(N1)  &kp LBKT  &kp LS(N3)  &kp LS(N4)  &kp LS(N5)  &kp LS(N6)  &kp LS(INT3)  &kp LS(MINUS)  &kp LS(SEMI)  &kp LS(SQT)  &kp DEL
+                &trans  &none  &none  &kp LSHFT  &kp TAB  &kp BSPC  &none  &none  &kp COMMA  &kp SEMI  &kp LS(N2)  &kp LS(EQUAL)  &kp LS(INT1)  &kp LS(N1)
+                &trans  &none  &none  &none  &none  &kp RET  &none  &none  &kp DOT  &kp SQT  &kp LS(N7)  &kp LS(LBKT)  &kp LA(INT3)  &kp LA(FSLH)
+                &trans  &trans  &trans  &trans  &kp LCTRL  &kp LGUI  &kp LALT  &kp RALT  &kp RGUI  &none  &none  &kp EQUAL  &kp INT3  &kp GRAVE
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
-&msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
+                &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
-&mkp MCLK
+                &mkp MCLK
 #endif
-&trans  &trans  &trans  &trans     &trans     &trans  &trans  &trans  &trans  &trans     &trans     &trans  &trans  &trans
             >;
         };
-
         layer_2 {
             bindings = <
-&trans  &trans            &trans            &trans      &trans      &trans                      &trans          &trans         &trans            &trans             &trans         &trans
-&trans  &kp LS(NUMBER_1)  &kp LS(NUMBER_2)  &kp LS(N3)  &kp LS(N4)  &kp LS(N5)                  &kp LS(N6)      &kp LS(N7)     &kp LS(N8)        &kp LS(N9)         &kp LS(N0)     &trans
-&trans  &kp N1            &kp N2            &kp N3      &kp N4      &kp N5      &trans  &trans  &kp LEFT_BRACE  &kp MINUS      &kp EQUAL         &kp RIGHT_BRACE    &kp COLON      &trans
-&trans  &kp N6            &kp N7            &kp N8      &kp N9      &kp N0      &trans  &trans  &kp LS(MINUS)   &kp LS(EQUAL)  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH  &trans
-&trans  &trans            &trans            &trans      &trans      &trans      &trans  &trans  &kp TAB         &kp DEL        &trans            &trans             &trans         &trans
+                &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
+                &trans  &kp F9  &kp F10  &kp F11  &kp F12  &kp C_FAST_FORWARD  &cornix_macro0  &kp PG_UP  &kp UP  &kp PG_DN  &cornix_macro1  &kp DEL
+                &trans  &kp F5  &kp F6  &kp F7  &kp F8  &kp BSPC  &none  &none  &kp HOME  &kp LEFT  &kp DOWN  &kp RIGHT  &kp END  &kp RSHFT
+                &trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp RET  &none  &none  &kp LC(LA(LG(LEFT)))  &kp LC(LA(LEFT))  &kp LC(LA(BSPC))  &kp LC(LA(RIGHT))  &kp LC(LA(LG(RIGHT)))  &none
+                &trans  &trans  &trans  &trans  &kp BSPC  &kp RET  &kp DEL  &none  &none  &none  &none  &none  &kp LS(LG(N5))  &kp LS(LG(N4))
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
-&msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
+                &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
-&kp C_MUTE
+                &kp C_MUTE
 #endif
             >;
         };
-
         layer_3 {
             bindings = <
-&trans  &trans   &trans   &trans        &trans        &trans                      &trans            &trans     &trans         &trans     &trans      &trans
-&trans  &kp F1   &kp F2   &kp F3        &kp F4        &kp F5                      &kp HOME          &kp PG_UP  &kp PAGE_DOWN  &kp END    &kp ESCAPE  &trans
-&trans  &kp F6   &kp F7   &kp F8        &kp F9        &kp F10     &trans  &trans  &kp LEFT          &kp DOWN   &kp UP_ARROW   &kp RIGHT  &kp TAB     &trans
-&trans  &kp F11  &kp F12  &out OUT_USB  &out OUT_BLE  &bt BT_NXT  &trans  &trans  &kp SINGLE_QUOTE  &kp DQT    &kp GRAVE      &kp TILDE  &kp PIPE    &trans
-&trans  &trans   &trans   &trans        &kp DELETE    &kp TAB     &trans  &trans  &trans            &trans     &trans         &trans     &trans      &trans
+                &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
+                &trans  &none  &none  &kp N7  &kp N8  &kp N9  &kp KP_EQUAL  &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_MULTIPLY  &kp BSPC
+                &trans  &kp SPACE  &none  &kp N4  &kp N5  &kp N6  &none  &none  &kp KP_PLUS  &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_SUBTRACT  &kp RET
+                &trans  &none  &none  &kp N1  &kp N2  &kp N3  &none  &none  &kp KP_COMMA  &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_DIVIDE  &kp INT3
+                &trans  &trans  &trans  &trans  &kp N0  &kp LGUI  &kp N0  &kp SQT  &kp KP_N0  &none  &none  &kp KP_COMMA  &kp KP_PLUS  &kp KP_NUMLOCK
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
-&msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
+                &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
-&hires_dial_radial_controller_button
+                &hires_dial_radial_controller_button
+#endif
+            >;
+        };
+        layer_4 {
+            bindings = <
+                &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
+                &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
+                &none  &none  &none  &none  &none  &none  &none  &none  &none  &mkp LCLK  &mkp RCLK  &none  &none  &none
+                &none  &none  &none  &none  &none  &none  &to 0  &to 0  &none  &none  &none  &kp RSHFT  &none  &none
+                &none  &none  &none  &to 0  &none  &none  &none  &kp RET  &mkp LCLK  &none  &none  &none  &none  &none
+#if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
+                &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
+#elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
+                &mkp MCLK
+#endif
+            >;
+        };
+        layer_5 {
+            bindings = <
+                &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
+                &studio_unlock  &bt BT_NXT  &bt BT_PRV  &none  &out OUT_USB  &out OUT_BLE  &none  &none  &none  &none  &none  &none
+                &none  &kp C_VOL_DN  &kp C_VOL_UP  &mkp LCLK  &mkp RCLK  &mkp MCLK  &none  &none  &none  &none  &none  &none  &none  &none
+                &none  &msc SCRL_UP  &msc SCRL_DOWN  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
+                &none  &none  &none  &trans  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
+#if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
+                &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
+#elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
+                &kp C_MUTE
 #endif
             >;
         };
