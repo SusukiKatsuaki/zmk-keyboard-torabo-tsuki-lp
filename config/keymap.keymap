@@ -10,6 +10,12 @@
 
 / {
     behaviors {
+        jis_minus: jis_minus {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp MINUS>, <&kp EQUAL>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
         lt150: lt_150 {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -49,43 +55,43 @@
             timeout-ms = <50>;
             key-positions = <15 16>;
             layers = <0>;
-            bindings = <&kp LS(N8)>;
+            bindings = <&kp LS(N9)>;
         };
         combo_1 {
             timeout-ms = <50>;
             key-positions = <19 20>;
             layers = <0>;
-            bindings = <&kp LS(N9)>;
+            bindings = <&kp LS(N0)>;
         };
         combo_2 {
             timeout-ms = <50>;
             key-positions = <27 28>;
             layers = <0>;
-            bindings = <&kp LS(RBKT)>;
+            bindings = <&kp LS(LBKT)>;
         };
         combo_3 {
             timeout-ms = <50>;
             key-positions = <33 34>;
             layers = <0>;
-            bindings = <&kp LS(NUHS)>;
+            bindings = <&kp LS(RBKT)>;
         };
         combo_4 {
             timeout-ms = <50>;
             key-positions = <41 42>;
             layers = <0>;
-            bindings = <&kp RBKT>;
+            bindings = <&kp LBKT>;
         };
         combo_5 {
             timeout-ms = <50>;
             key-positions = <47 48>;
             layers = <0>;
-            bindings = <&kp NUHS>;
+            bindings = <&kp RBKT>;
         };
         combo_6 {
             timeout-ms = <50>;
             key-positions = <35 36>;
             layers = <0>;
-            bindings = <&kp LS(INT1)>;
+            bindings = <&kp LS(MINUS)>;
         };
         combo_8 {
             timeout-ms = <50>;
@@ -142,7 +148,7 @@
             bindings = <
                 &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
                 &kp ESC  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp BSPC
-                &kp TAB  &kp A  &kp S  &kp D  &kp F  &kp G  &none  &none  &lt150 4 H  &kp J  &kp K  &kp L  &kp MINUS  &kp RET
+                &kp TAB  &kp A  &kp S  &kp D  &kp F  &kp G  &none  &none  &lt150 4 H  &kp J  &kp K  &kp L  &jis_minus  &kp RET
                 &kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp C_MUTE  &to 4  &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RSHFT
                 &kp LCTRL  &kp LGUI  &kp LALT  &mo 5  &lt250 3 LANG2  &kp LGUI  &lt150 1 SPACE  &lt150 1 SPACE  &lt150 2 LANG1  &none  &none  &kp RALT  &kp RGUI  &kp LC(LG(SPACE))
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
@@ -155,10 +161,10 @@
         layer_1 {
             bindings = <
                 &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
-                &trans  &kp LS(N1)  &kp LBKT  &kp LS(N3)  &kp LS(N4)  &kp LS(N5)  &kp LS(N6)  &kp LS(INT3)  &kp LS(MINUS)  &kp LS(SEMI)  &kp LS(SQT)  &kp DEL
-                &trans  &none  &none  &kp LSHFT  &kp TAB  &kp BSPC  &none  &none  &kp COMMA  &kp SEMI  &kp LS(N2)  &kp LS(EQUAL)  &kp LS(INT1)  &kp LS(N1)
-                &trans  &none  &none  &none  &none  &kp RET  &none  &none  &kp DOT  &kp SQT  &kp LS(N7)  &kp LS(LBKT)  &kp LA(INT3)  &kp LA(FSLH)
-                &trans  &trans  &trans  &trans  &kp LCTRL  &kp LGUI  &kp LALT  &kp RALT  &kp RGUI  &none  &none  &kp EQUAL  &kp INT3  &kp GRAVE
+                &trans  &kp LS(N1)  &kp LS(N2)  &kp LS(N3)  &kp LS(N4)  &kp LS(N5)  &kp LS(N7)  &kp LS(BSLH)  &kp EQUAL  &kp LS(EQUAL)  &kp LS(N8)  &kp DEL
+                &trans  &none  &none  &kp LSHFT  &kp TAB  &kp BSPC  &none  &none  &kp COMMA  &kp SEMI  &kp LS(SQT)  &kp LS(GRAVE)  &kp LS(MINUS)  &kp LS(N1)
+                &trans  &none  &none  &none  &none  &kp RET  &none  &none  &kp DOT  &kp LS(SEMI)  &kp SQT  &kp GRAVE  &kp BSLH  &kp LA(FSLH)
+                &trans  &trans  &trans  &trans  &kp LCTRL  &kp LGUI  &kp LALT  &kp RALT  &kp RGUI  &none  &none  &kp LS(N6)  &kp LA(Y)  &kp GRAVE
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
                 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
@@ -185,8 +191,8 @@
                 &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none  &none
                 &trans  &none  &none  &kp N7  &kp N8  &kp N9  &kp KP_EQUAL  &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_MULTIPLY  &kp BSPC
                 &trans  &kp SPACE  &none  &kp N4  &kp N5  &kp N6  &none  &none  &kp KP_PLUS  &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_SUBTRACT  &kp RET
-                &trans  &none  &none  &kp N1  &kp N2  &kp N3  &none  &none  &kp KP_COMMA  &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_DIVIDE  &kp INT3
-                &trans  &trans  &trans  &trans  &kp N0  &kp LGUI  &kp N0  &kp SQT  &kp KP_N0  &none  &none  &kp KP_COMMA  &kp KP_PLUS  &kp KP_NUMLOCK
+                &trans  &none  &none  &kp N1  &kp N2  &kp N3  &none  &none  &kp KP_COMMA  &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_DIVIDE  &kp LA(Y)
+                &trans  &trans  &trans  &trans  &kp N0  &kp LGUI  &kp N0  &kp LS(SEMI)  &kp KP_N0  &none  &none  &kp KP_COMMA  &kp KP_PLUS  &kp KP_NUMLOCK
 #if defined(TORABO_TSUKI_LP_KSCAN_4_DIRECTION_SWITCH)
                 &msc SCRL_UP &msc SCRL_DOWN &msc SCRL_LEFT &msc SCRL_RIGHT &mkp MCLK
 #elif defined(TORABO_TSUKI_LP_INPUT_HIRES_DIAL)
